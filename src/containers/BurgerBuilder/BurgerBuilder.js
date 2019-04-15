@@ -35,7 +35,12 @@ class BurgerBuilder extends Component {
     
     purchaseContinue = () => {
         this.props.onInitPurchase();
-        this.props.isAuth ? this.props.history.push('/checkout') : this.props.onAuthRedirect('/checkout'); this.props.history.push('/auth');
+        if(this.props.isAuth) {
+            this.props.history.push('/checkout');
+        } else {
+            this.props.onAuthRedirect('/checkout');
+            this.props.history.push('/auth');
+        }
     }
 
     render () {
