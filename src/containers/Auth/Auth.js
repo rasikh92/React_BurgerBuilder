@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 import {connect} from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import {Redirect} from 'react-router-dom';
+import {checkValidity} from '../validation';
 
 class Auth extends Component {
     state = {
@@ -47,28 +48,6 @@ class Auth extends Component {
             this.props.onSetAuth();
         }
     }
-    checkValidity(value, rules) {
-        let isValid = true;
-
-        if(rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if(rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if(rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        if(rules.isEmail) {
-            const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            isValid = pattern.test(value) && isValid;
-        }
-        
-        return isValid;
-    }
 
     changedHangler = (event, inputIdentifier) => {
         const updatedControls = {
@@ -76,7 +55,7 @@ class Auth extends Component {
             [inputIdentifier]: {
                 ...this.state.controls[inputIdentifier],
                 value: event.target.value,
-                valid: this.checkValidity(event.target.value, this.state.controls[inputIdentifier].validation),
+                valid: checkValidity(event.target.value, this.state.controls[inputIdentifier].validation),
                 touched: true 
             }
         };
