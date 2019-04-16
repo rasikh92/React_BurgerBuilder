@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     state = {
         purchasing: false
     }
@@ -67,7 +67,7 @@ class BurgerBuilder extends Component {
             orderSummary = <OrderSummary ingredients = {this.props.ingredients} 
                             clicked={this.purchaseCancelHandler} 
                             continued={this.purchaseContinue} 
-                            totalprice={this.props.price.toFixed(2)}/>
+                            totalprice={this.props.price}/>
         }
 
         return (
