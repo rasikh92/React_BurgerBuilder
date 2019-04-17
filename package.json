@@ -2,7 +2,6 @@
   "name": "react2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/rasikh92/React_BurgerBuilder",
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
@@ -68,9 +67,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
